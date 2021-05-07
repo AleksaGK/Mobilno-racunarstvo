@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: BestMoviesPage
-  }
+  },
+  {
+    path: '/movie/movieId',
+    loadChildren: () => import('../movie/movie.module').then(m => m.MoviePageModule)
+  },
 ];
 
 @NgModule({
