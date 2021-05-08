@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- <div *ngFor="let movie of topMovies" class="category-block">
+
+    <ion-row no-padding class="category-banner">
+      <ion-col text-left button tappable align-self-center>
+        {{movie.ImdbId}}
+      </ion-col>
+    </ion-row>
+
+  </div> -->
+  <h1>Upcomming</h1>
+  <ion-slides pager="true" [options]="sliderConfiguration">
+    <ion-slide *ngFor="let movie of topMovies">
+      <ion-card color="secondary">
+        <ion-card-header>
+          <img [src]="movie.Poster">
+        </ion-card-header>
+        <ion-card-content>
+          <p>
+            <ion-icon name="star-outline" color="warning"></ion-icon> {{movie.MovieId}}
+          </p>
+          <p> {{movie.Title}} </p>
+          <p> year duration </p>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+  
+  <h1>Top 10 by IMDB rationg</h1>
+  <ion-slides pager="true" [options]="sliderConfiguration">
+    <ion-slide *ngFor="let movie of topMovies">
+      <ion-card color="secondary">
+        <ion-card-header>
+          <img [src]="movie.Poster">
+        </ion-card-header>
+        <ion-card-content>
+          <p>
+            <ion-icon name="star-outline" color="warning"></ion-icon> {{movie.MovieId}}
+          </p>
+          <p> {{movie.Title}} </p>
+          <p> year duration </p>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
