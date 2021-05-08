@@ -44,9 +44,14 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/home',
+    redirectTo: '/sign-in',
     pathMatch: 'full'
+  },
+  {
+    path: 'sign-in',
+    loadChildren: () => import('./autf/sign-in/sign-in.module').then( m => m.SignInPageModule)
   }
+
 ];
 
 @NgModule({
