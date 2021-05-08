@@ -70,7 +70,7 @@ export class MainService {
 
   constructor() { }
 
-  getMovies(){
+  getMovies() {
     return this.date;
   }
 
