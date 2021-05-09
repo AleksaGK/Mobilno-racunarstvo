@@ -46,10 +46,6 @@ const routes: Routes = [
     path: '',
     redirectTo: '/tabs/home',
     pathMatch: 'full'
-  },
-  {
-    path: 'movie',
-    loadChildren: () => import('./movie/movie.module').then( m => m.MoviePageModule)
   }
 ];
 
