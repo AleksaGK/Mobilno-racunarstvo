@@ -16,13 +16,7 @@ export class SearchPage implements OnInit {
 
   ngOnInit() {
   }
-
-  // toggleFunc(){
-  //   console.log(this.resultsAvailable)
-  //   this.resultsAvailable = !this.resultsAvailable;
-  //   console.log(this.resultsAvailable)
-  // }
-
+  
   onSearchChange(event: any) {
     const substring: string = event.target.value;
     let all = this.mainService.getMovies();

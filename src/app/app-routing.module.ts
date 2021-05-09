@@ -7,7 +7,11 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./main/main.module').then( m => m.MainPageModule)
   }
-
+  ,
+  {
+    path: 'genre',
+    loadChildren: () => import('./main/movie-list/movie-list.module').then( m => m.MovieListPageModule)
+  }
 
 ];
 
