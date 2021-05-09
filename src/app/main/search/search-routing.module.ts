@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: SearchPage
+  },
+  {
+    path: ':MovieId',
+    loadChildren: () => import('../movie/movie.module').then(m => m.MoviePageModule)
   }
 ];
 
@@ -14,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SearchPageRoutingModule {}
+export class SearchPageRoutingModule { }

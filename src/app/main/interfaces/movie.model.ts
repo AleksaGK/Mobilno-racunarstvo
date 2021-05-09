@@ -13,7 +13,7 @@ export interface Movie {
     //Popularity: number;
     Poster: string;
     //ProductionCompanies: Company[];
-    ReleaseDate: Date;
+    //ReleaseDate: Date;
     //Revenue: number;
     //Runtime: number;
     //Tagline: string;

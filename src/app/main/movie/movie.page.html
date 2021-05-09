@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+   <h1 class="ion-text-center"> {{movie.Title}}</h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-grid>
+    <!--first row  -->
+    <!-- <ion-row>
+      <ion-col>
+        IMDB ID: {{movie.ImdbId}}
+      </ion-col>
+    </ion-row> -->
+
+    <!-- second row -->
+    <ion-row>
+      <ion-col>
+         <img [src]="movie.Poster"> 
+         IMDB ID: {{movie.ImdbId}}
+      </ion-col>
+      <ion-col>
+        overview
+      </ion-col>
+    </ion-row>
+    <!-- third row -->
+    <ion-row>
+      <ion-col>
+        <h1>Genres</h1>
+      </ion-col>
+    </ion-row>
+    <!-- fourth row -->
+    <ion-row>
+      <ion-col>
+        <ion-slides pager="false" [options]="sliderConfiguration">
+          <ion-slide *ngFor="let i of [].constructor(4)">
+            <ion-card color="secondary">
+              <ion-card-header></ion-card-header>
+              <ion-card-content>
+                science-fiction
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+        </ion-slides>
+      </ion-col>
+    </ion-row>
+
+    <!-- fifth row -->
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <div><img src="../../../assets/star.png"></div>
+        <div>7.6/10</div>
+        <div>672574</div>
+      </ion-col>
+    </ion-row>
+
+    <!-- sixth row -->
+    <ion-row>
+      <ion-col>
+        <h1>Actors</h1>
+        <!-- ngFor list all actors -->
+        <p>Daniel Radcliffe</p>
+        <p>Rupert Grint</p>
+        <p>Emma Watson</p>
+      </ion-col>
+    </ion-row>
+
+    <!-- seventh row -->
+    <ion-row>
+      <ion-col>
+        <h1>Awards</h1>
+        <!-- ngFor list all actors -->
+        <p>Oscar: Best Art Direction-Set Decoration</p>
+        <p>Oscar: Best Costume Design</p>
+        <p>Oscar: Best Music, Original Score</p>
+      </ion-col>
+    </ion-row>
+
+
+  </ion-grid>
+
+
+</ion-content>

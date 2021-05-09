@@ -11,6 +11,7 @@ export class SearchPage implements OnInit {
 
   searchedMovies = [];
   resultsAvailable = false;
+
   constructor(private mainService: MainService, private router: Router) { }
 
   ngOnInit() {
@@ -32,7 +33,7 @@ export class SearchPage implements OnInit {
     let i = 0;
     for (let index = 0; index < all.length; index++) {
       if (all[index].Title.toLowerCase().includes(substring.toLowerCase())) {
-        this.searchedMovies[i++] = { title: all[index].Title, img: all[index].Poster };
+        this.searchedMovies[i++] = { MovieId: all[index].MovieId, title: all[index].Title, img: all[index].Poster };
         this.resultsAvailable = true;
       }
     }

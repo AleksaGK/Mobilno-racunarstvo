@@ -1,23 +1,27 @@
 ion-card-header {
+    max-height: 200px;
     position: relative;
     top: 0;
     left: 0;
 }
 .img1 {
     height: 160px;
+    width: 80px;
     position: relative;
     top: 0;
-    left: 0;
+    left: 60px;
 }
 .img2 {
     height: 160px;
+    width: 80px;
     position: absolute;
-    right: 33%;
+    left: 30px;
 }
 .img3 {
     height: 160px;
+    width: 80px;
     position: absolute;
-    right: 66%;
+    left: 0px;
 }
 //   ion-card-header {
 //     position: relative;

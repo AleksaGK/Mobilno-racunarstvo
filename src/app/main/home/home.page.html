@@ -16,9 +16,9 @@
 
   </div> -->
   <h1>Upcomming</h1>
-  <ion-slides pager="true" [options]="sliderConfiguration">
+  <ion-slides [options]="sliderConfiguration">
     <ion-slide *ngFor="let movie of topMovies">
-      <ion-card color="secondary">
+      <ion-card color="secondary" [routerLink]="movie.MovieId">
         <ion-card-header>
           <img [src]="movie.Poster">
         </ion-card-header>
@@ -34,7 +34,7 @@
   </ion-slides>
   
   <h1>Top 10 by IMDB rationg</h1>
-  <ion-slides pager="true" [options]="sliderConfiguration">
+  <ion-slides [options]="sliderConfiguration">
     <ion-slide *ngFor="let movie of topMovies">
       <ion-card color="secondary">
         <ion-card-header>

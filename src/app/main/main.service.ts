@@ -74,6 +74,11 @@ export class MainService {
     return this.date;
   }
 
+  getMovie(id: string) {
+    return this.date.find(m => m.MovieId == parseInt(id, 10));
+  }
+
+
 
 
 }
