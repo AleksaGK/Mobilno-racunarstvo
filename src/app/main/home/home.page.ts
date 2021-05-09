@@ -29,6 +29,8 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.topMovies = this.mainService.getMovies();
+
+    
     // const squareOddVals = pipe(
     //   map((m: Movie) => {
     //     let rejoin;
@@ -59,20 +61,20 @@ export class HomePage implements OnInit {
   }
   ionViewDidEnter() {
     //set all images to be equal dimensions
-    setTimeout(() => {
-      let cards = document.getElementsByTagName("img");
-      let heights = 0;
-      let widths = 0;
-      for (let index = 0; index < cards.length; index++) {
-        heights += document.getElementsByTagName("img")[index].offsetHeight;
-        widths += document.getElementsByTagName("img")[index].offsetWidth;
-      }
-      heights /= cards.length;
-      widths /= cards.length;
-      for (let index = 0; index < cards.length; index++) {
-        document.getElementsByTagName("img")[index].style.height = heights + "px";
-        document.getElementsByTagName("img")[index].style.width = widths + "px";
-      }
-    }, 2000);
+    // setTimeout(() => {
+    //   let cards = document.getElementsByTagName("img");
+    //   let heights = 0;
+    //   let widths = 0;
+    //   for (let index = 0; index < cards.length; index++) {
+    //     heights += document.getElementsByTagName("img")[index].offsetHeight;
+    //     widths += document.getElementsByTagName("img")[index].offsetWidth;
+    //   }
+    //   heights /= cards.length;
+    //   widths /= cards.length;
+    //   for (let index = 0; index < cards.length; index++) {
+    //     document.getElementsByTagName("img")[index].style.height = heights + "px";
+    //     document.getElementsByTagName("img")[index].style.width = widths + "px";
+    //   }
+    // }, 2000);
   }
 }
