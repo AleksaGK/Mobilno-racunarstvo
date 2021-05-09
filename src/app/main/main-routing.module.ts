@@ -44,28 +44,23 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/sign-in',
+    redirectTo: '/tabs/home',
     pathMatch: 'full'
   },
-
   {
-
     path: 'movie',
-
-    loadChildren: () => import('./movie/movie.module').then( m => m.MoviePageModule)
-
-  }
-  ,
+    loadChildren: () => import('./movie/movie.module').then(m => m.MoviePageModule)
+  },
   {
     path: 'sign-in',
-    loadChildren: () => import('./autf/sign-in/sign-in.module').then( m => m.SignInPageModule)
-  },  {
+    loadChildren: () => import('./autf/sign-in/sign-in.module').then(m => m.SignInPageModule)
+  }, {
     path: 'sign-up',
-    loadChildren: () => import('./autf/sign-up/sign-up.module').then( m => m.SignUpPageModule)
+    loadChildren: () => import('./autf/sign-up/sign-up.module').then(m => m.SignUpPageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./autf/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./autf/login/login.module').then(m => m.LoginPageModule)
   }
 ];
 
