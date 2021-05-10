@@ -9,12 +9,12 @@ const routes: Routes = [
     component: SearchPage
   },
   {
-    path: ':MovieId',
-    loadChildren: () => import('../movie/movie.module').then(m => m.MoviePageModule)
-  },
-  {
     path: 'genre',
     loadChildren: () => import('../movie-list/movie-list.module').then( m => m.MovieListPageModule)
+  },
+  {
+    path: ':MovieId',
+    loadChildren: () => import('../movie/movie.module').then(m => m.MoviePageModule)
   }
 ];
 
