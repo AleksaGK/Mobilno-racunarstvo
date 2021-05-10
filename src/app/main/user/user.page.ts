@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '../autf/service/auth.service';
 
 @Component({
   selector: 'app-user',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserPage implements OnInit {
 
-  constructor() { }
+  logged: boolean;
+  constructor(public authService: AuthService) { }
+
 
   ngOnInit() {
+    this.logged = this.authService.isLoggedIn;
   }
+
 
 }
