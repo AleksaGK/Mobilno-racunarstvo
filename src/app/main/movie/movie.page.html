@@ -4,7 +4,7 @@
       <ion-back-button >
       </ion-back-button>
     </ion-buttons>
-    <h1 class="ion-text-center"> {{movie.Title}}</h1>
+    <h1 class="ion-text-center"> {{movie?.title}}</h1>
   </ion-toolbar>
 </ion-header>
 
@@ -12,37 +12,39 @@
 
   <ion-grid>
     <!--first row  -->
-    <!-- <ion-row>
+    <ion-row>
       <ion-col>
-        IMDB ID: {{movie.ImdbId}}
+        IMDB ID: {{movie?.title}}
       </ion-col>
-    </ion-row> -->
+    </ion-row>
 
     <!-- second row -->
     <ion-row>
       <ion-col>
-         <img [src]="movie.Poster"> 
-         IMDB ID: {{movie.ImdbId}}
+         <img [src]="movie?.poster"> 
+         IMDB ID: {{movie?.imdbId}}
       </ion-col>
       <ion-col>
-        overview
+        {{movie?.overview}}
       </ion-col>
     </ion-row>
+
     <!-- third row -->
     <ion-row>
       <ion-col>
         <h1>Genres</h1>
       </ion-col>
     </ion-row>
+
     <!-- fourth row -->
     <ion-row>
       <ion-col>
         <ion-slides pager="false" [options]="sliderConfiguration">
-          <ion-slide *ngFor="let i of [].constructor(4)">
+          <ion-slide *ngFor="let genre of movie?.genres">
             <ion-card color="secondary">
               <ion-card-header></ion-card-header>
               <ion-card-content>
-                science-fiction
+                {{genre.name}}
               </ion-card-content>
             </ion-card>
           </ion-slide>
@@ -54,8 +56,8 @@
     <ion-row>
       <ion-col class="ion-text-center">
         <div><img src="../../../assets/star.png"></div>
-        <div>7.6/10</div>
-        <div>672574</div>
+        <div>{{movie?.imdbRating}}/10</div>
+        <div>{{movie?.voteCount}}</div>
       </ion-col>
     </ion-row>
 
@@ -63,10 +65,7 @@
     <ion-row>
       <ion-col>
         <h1>Actors</h1>
-        <!-- ngFor list all actors -->
-        <p>Daniel Radcliffe</p>
-        <p>Rupert Grint</p>
-        <p>Emma Watson</p>
+        <p *ngFor="let actor of actors">{{actor}}</p>
       </ion-col>
     </ion-row>
 
@@ -74,10 +73,7 @@
     <ion-row>
       <ion-col>
         <h1>Awards</h1>
-        <!-- ngFor list all actors -->
-        <p>Oscar: Best Art Direction-Set Decoration</p>
-        <p>Oscar: Best Costume Design</p>
-        <p>Oscar: Best Music, Original Score</p>
+        <p *ngFor="let award of awards">{{award}}</p>
       </ion-col>
     </ion-row>
 

@@ -11,6 +11,8 @@ import { MainService } from '../main.service';
 export class MoviePage implements OnInit {
 
   movie: Movie;
+  actors: string[];
+  awards: string[];
 
   sliderConfiguration = {
     slidesPerView: 2.5,
@@ -27,9 +29,15 @@ export class MoviePage implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
-      this.movie = this.service.getMovie(paramMap.get('MovieId'));
+      this.service.getMovie(paramMap.get('MovieId')).subscribe((res) => {
+        this.movie = res;
+        this.actors = this.movie.actors.split(",");
+        this.awards = this.movie.awards.split(".");
+      }, (error) => { console.log(error) });
     })
-    // console.log(this.movie.MovieId)
+
+
+
   }
 
 }

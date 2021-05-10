@@ -28,27 +28,31 @@ export class HomePage implements OnInit {
   constructor(private mainService: MainService, private router: Router) { }
 
   ngOnInit() {
-    this.topMovies = this.mainService.getMovies();
+    //this.topMovies = this.mainService.getMovies();
 
-    
+    this.mainService.getMovies2().subscribe((result) => {
+      this.topMovies = result;
+    },
+      (error) => { console.log(error) });
+
     // const squareOddVals = pipe(
     //   map((m: Movie) => {
-    //     let rejoin;
-    //     while (m.Title.length > 45) {
-    //       let newTitle = m.Title.split(" ");
-    //       newTitle.pop();
-    //       rejoin = newTitle.join();
-    //       rejoin += '...';
-    //     }
-    //     if (rejoin != undefined)
-    //       m.Title = rejoin;
+    //     let rejoin = m.title;
+    // while (rejoin.length > 36) {
+    //   let newTitle = rejoin.split(" ");
+    //   newTitle.pop();
+    //   rejoin = newTitle.join(' ');
+    //   rejoin += '...';
+    // }
+    // if (rejoin.includes('...'))
+    //   m.title = rejoin;
     //   })
     // );
     // this.topMovies.subscribe();
 
     //shorten title
     this.topMovies.forEach(m => {
-      let rejoin = m.Title;
+      let rejoin = m.title;
       while (rejoin.length > 36) {
         let newTitle = rejoin.split(" ");
         newTitle.pop();
@@ -56,7 +60,7 @@ export class HomePage implements OnInit {
         rejoin += '...';
       }
       if (rejoin.includes('...'))
-        m.Title = rejoin;
+        m.title = rejoin;
     });
   }
   ionViewDidEnter() {
