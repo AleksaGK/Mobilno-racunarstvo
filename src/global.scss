@@ -24,3 +24,22 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+.alertHeader {
+  color: #2fdf75 !important;
+  text-align: center !important;
+  // --color: #b52024 !important;
+}
+h2.alertHeader {
+  color: #b52024 !important;
+  // --color: #b52024 !important;
+}
+
+//this works for alertHeader when inspecting in the browser
+.alert-sub-title.sc-ion-alert-md, .alert-title.sc-ion-alert-md {
+  color: red;
+  text-align: center;
+}
+.alert-head.sc-ion-alert-md+.alert-message.sc-ion-alert-md {
+  padding-top: 0;
+  font-size: 15px;
+}

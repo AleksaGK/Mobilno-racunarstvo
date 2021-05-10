@@ -1,9 +1,38 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>user</ion-title>
+
+    <div slot="end" *ngIf="logged">
+
+    <ion-buttons>
+       <ion-button (click)="onAlert()">
+        <ion-icon  slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    </div>
+
+
+    <ion-title *ngIf="logged">user</ion-title>
+
+    <div *ngIf="!logged">
+      <ion-item>
+
+      <ion-icon name="person-outline" class="icon2">Sign in</ion-icon>
+      <ion-title class="title2">Sign in</ion-title>
+      </ion-item>
+    </div>
+
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+ <div *ngIf="logged">
 
+    <p>True</p>
+  </div>
+
+  <div *ngIf="!logged">
+
+   <ion-button class="button2" routerLink="/sign-in"> Sign in/Sign up</ion-button>
+  </div>
 </ion-content>
