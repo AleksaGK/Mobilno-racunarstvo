@@ -21,7 +21,7 @@
     <!-- second row -->
     <ion-row>
       <ion-col>
-         <img [src]="movie.Poster"> 
+         <img [src]="movie.Poster">
          IMDB ID: {{movie.ImdbId}}
       </ion-col>
       <ion-col>
@@ -52,10 +52,24 @@
 
     <!-- fifth row -->
     <ion-row>
+<!--      <ion-col class="ion-text-center">-->
+<!--        <div><img src="../../../assets/star.png"></div>-->
+<!--        <div>7.6/10</div>-->
+<!--        <div>672574</div>-->
+<!--      </ion-col>-->
+
       <ion-col class="ion-text-center">
-        <div><img src="../../../assets/star.png"></div>
+        <ion-icon name="star" class="iconYellow"></ion-icon>
         <div>7.6/10</div>
         <div>672574</div>
+      </ion-col>
+
+      <ion-col class="ion-text-center" >
+
+        <ion-icon name="star" class="iconRate" (click)="openModal()"></ion-icon>
+
+        <div>Rate this film</div>
+
       </ion-col>
     </ion-row>
 
