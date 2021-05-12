@@ -2,26 +2,26 @@ import { Company } from "./company.model";
 import { Genre } from "./genre.model"
 
 export interface Movie {
-    //Budget: number;
-    //Genres: Genre[];
-    //Homepage: string;
-    MovieId: Number;
-    ImdbId: string;
-    //Language: string;
-    Title: string;
-    //Overview: string;
-    //Popularity: number;
-    Poster: string;
+    budget: number;
+    genres: Genre[];
+    homepage: string;
+    movieId: Number;
+    imdbId: string;
+    language: string;
+    title: string;
+    overview: string;
+    popularity: number;
+    poster: string;
     //ProductionCompanies: Company[];
-    //ReleaseDate: Date;
-    //Revenue: number;
-    //Runtime: number;
-    //Tagline: string;
-    //ImdbRating: number;
-    //VoteCount: number;
-    //Actors: string;
-    //Awards: string;
-    //Director: string;
-    // List<Vote> Votes
-    // List<User> Users
+    releaseDate: Date;
+    revenue: number;
+    runtime: number;
+    tagline: string;
+    imdbRating: number;
+    voteCount: number;
+    actors: string;
+    awards: string;
+    director: string;
+    //List<Vote> Votes
+    //List<User> Users
 }

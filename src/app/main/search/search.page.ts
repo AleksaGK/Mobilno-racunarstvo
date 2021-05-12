@@ -16,18 +16,19 @@ export class SearchPage implements OnInit {
 
   ngOnInit() {
   }
-  
+
   onSearchChange(event: any) {
     const substring: string = event.target.value;
-    let all = this.mainService.getMovies();
+    let all;
+    this.mainService.getMovies2().subscribe((result) => { all = result }, (error) => { console.log(error) });
     this.searchedMovies = [];
     if (substring == "") {
       return;
     }
     let i = 0;
     for (let index = 0; index < all.length; index++) {
-      if (all[index].Title.toLowerCase().includes(substring.toLowerCase())) {
-        this.searchedMovies[i++] = { MovieId: all[index].MovieId, title: all[index].Title, img: all[index].Poster };
+      if (all[index].title.toLowerCase().includes(substring.toLowerCase())) {
+        this.searchedMovies[i++] = { MovieId: all[index].movieId, title: all[index].title, img: all[index].poster };
         this.resultsAvailable = true;
       }
     }
