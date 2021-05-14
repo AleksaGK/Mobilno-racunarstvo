@@ -1,11 +1,11 @@
-import { Company } from "./company.model";
-import { Genre } from "./genre.model"
+// import { Company } from "./company.model";
+import { Genre } from './genre.model';
 
 export interface Movie {
     budget: number;
     genres: Genre[];
     homepage: string;
-    movieId: Number;
+    movieId: number;
     imdbId: string;
     language: string;
     title: string;

@@ -23,7 +23,7 @@ export class MoviePage implements OnInit {
       modifier: 1,
       slideShadows: true,
     }
-  }
+  };
 
   constructor(private route: ActivatedRoute, private service: MainService) { }
 
@@ -31,10 +31,10 @@ export class MoviePage implements OnInit {
     this.route.paramMap.subscribe(paramMap => {
       this.service.getMovie(paramMap.get('MovieId')).subscribe((res) => {
         this.movie = res;
-        this.actors = this.movie.actors.split(",");
-        this.awards = this.movie.awards.split(".");
-      }, (error) => { console.log(error) });
-    })
+        this.actors = this.movie.actors.split(',');
+        this.awards = this.movie.awards.split('.');
+      }, (error) => { console.log(error); });
+    });
 
 
 

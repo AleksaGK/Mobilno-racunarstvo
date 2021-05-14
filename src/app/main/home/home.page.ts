@@ -33,7 +33,7 @@ export class HomePage implements OnInit {
     this.mainService.getMovies2().subscribe((result) => {
       this.topMovies = result;
     },
-      (error) => { console.log(error) });
+      (error) => { console.log(error)});
 
     // const squareOddVals = pipe(
     //   map((m: Movie) => {

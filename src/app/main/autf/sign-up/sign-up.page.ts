@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../service/auth.service';
+import {ToastController} from "@ionic/angular";
 
 @Component({
   selector: 'app-sign-up',
@@ -20,7 +22,8 @@ export class SignUpPage implements OnInit {
     ]
   };
   validationFormUser: FormGroup;
-  constructor(private formBuilder: FormBuilder ) {
+
+  constructor(private formBuilder: FormBuilder, private service: AuthService, private toastController: ToastController) {
 
       }
 
@@ -43,7 +46,21 @@ export class SignUpPage implements OnInit {
     });
   }
 
-  registerUser(value: any) {
 
+
+  registerUser(user: any) {
+
+   this.service.registerUser(user).subscribe(res=> console.log(res),
+     err=>this.presentToast(err));
+  }
+
+  async presentToast(message) {
+    const toast = await this.toastController.create({
+      message: 'Username or email are already used',
+      duration: 2000,
+      position: 'middle',
+      color: 'warning'
+    });
+    toast.present();
   }
 }
