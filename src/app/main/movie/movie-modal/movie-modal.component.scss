@@ -1,0 +1,61 @@
+
+
+.button{
+
+  text-align: center;
+
+
+}
+
+ion-card-header{
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  background-color: #7974ff;
+  size: 10px;
+}
+
+.iconStar{
+  font-size: 30px;
+}
+
+.rate{
+  color: darkblue;
+}
+.imageBackground {
+  /* The image used */
+  //background-image: url("https://m.media-amazon.com/images/M/MV5BMTcxODgwMDkxNV5BMl5BanBnXkFtZTYwMDk2MDg3._V1_SX300.jpg");
+
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.itemOnImage {
+  //background-color: rgb(0,0,0); /* Fallback color */
+  color: white;
+  font-size: xxx-large;
+  font-weight: bold;
+  //border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  //width: 80%;
+  //padding: 20px;
+  text-align: center;
+}
+
+
+ion-card-subtitle{
+  font-size: large;
+}

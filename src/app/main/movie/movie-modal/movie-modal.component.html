@@ -1,0 +1,39 @@
+
+<ion-header>
+
+  <ion-toolbar>
+
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-img src="{{movie.poster}}" class="imageBackground"></ion-img>
+
+    <div class="itemOnImage" >{{numOfStar}}</div>
+
+    <ion-img src="{{movie.poster}}" class="itemOnImage" *ngIf="showPicture"></ion-img>
+
+      <ion-card-subtitle>
+        <div style="margin-left: 15px">
+
+        How would you rate {{movie.title}}?
+        </div>
+      </ion-card-subtitle>
+
+    <ion-card-content>
+        <ion-icon class="iconStar" [class.rate]="array.includes(num)" (click)="changeRating(num)" name="star"  *ngFor="let num of [1,2,3,4,5,6,7,8,9,10]" [id]="num"></ion-icon>
+    </ion-card-content>
+
+  <ion-button class="button" expand="block">Rate</ion-button>
+  </ion-card>
+
+
+</ion-content>
