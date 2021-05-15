@@ -7,8 +7,7 @@ import { Movie } from './interfaces/movie.model';
   providedIn: 'root'
 })
 export class MainService {
- 
-  
+
   constructor(private http: HttpClient) { }
 
   public getMovies(): Observable<Movie[]> {
@@ -16,7 +15,7 @@ export class MainService {
   }
 
   getMovie(id: string) {
-    return this.http.get<any>("http://localhost:16615/api/movies/" + id);
+    return this.http.get<any>('http://localhost:16615/api/movies/' + id);
   }
  
   getUpcomingMovies() {

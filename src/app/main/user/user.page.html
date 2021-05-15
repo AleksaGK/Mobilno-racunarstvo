@@ -11,7 +11,7 @@
     </div>
 
 
-    <ion-title *ngIf="logged">user</ion-title>
+    <ion-title class="title2" *ngIf="logged">{{this.authService.user.username}}</ion-title>
 
     <div *ngIf="!logged">
       <ion-item>
@@ -28,7 +28,7 @@
 <ion-content>
  <div *ngIf="logged">
 
-    <p>True</p>
+    <p>true</p>
   </div>
 
   <div *ngIf="!logged">

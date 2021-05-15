@@ -10,7 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 //import {AngularFireAuthModule} from '@angular/fire/auth';
 //import {AngularFireModule} from '@angular/fire';
-import {firebaseConfig} from '../environments/environment.prod';
+// import {firebaseConfig} from '../environments/environment.prod';
 //import {AngularFirestoreModule} from '@angular/fire/firestore';
 
 @NgModule({

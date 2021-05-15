@@ -34,7 +34,7 @@ export class HomePage implements OnInit {
     this.mainService.getTop10Movies().subscribe((result) => {
       this.topMovies = result;
     },
-      (error) => { console.log(error) });
+      (error) => { console.log(error)});
 
     this.mainService.getUpcomingMovies().subscribe((result) => {
       this.upcomingMovies = result;

@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {User} from '../../interfaces/user.model';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../service/auth.service';
+import {ToastController} from "@ionic/angular";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -23,12 +25,9 @@ export class LoginPage implements OnInit {
 
     ]
   };
-  constructor(public formBuilder: FormBuilder,public authService: AuthService ) {
-
-
-
+  constructor(public formBuilder: FormBuilder,public authService: AuthService,private toastController: ToastController,
+              private router: Router) {
   }
-
 
   ngOnInit(){
     this.validationFormUser = this.formBuilder.group({
@@ -43,21 +42,30 @@ export class LoginPage implements OnInit {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  LoginUser(value: any) {
+  loginUser(value: any) {
+    this.authService.login(value).subscribe(res=>{
+      this.authService.isLoggedIn = true;
 
-    // try{
+      this.authService.user = res;
+      this.router.navigate(['/tabs']);
+      },
+      err=>this.presentToast(err.message));
 
-    //   this.authService.loginFireauth(value).then(resp=>{
-    //     console.log(resp);
-    //     console.log('Successfully login');
-    //   });
+  }
 
-    //   this.authService.isLoggedIn=true;
-    // }catch (err){
-    //   this.authService.isLoggedIn = false;
-    //   console.log(err);
-    //   console.log('login error');
-    // }
+
+  async presentToast(message) {
+    if(message.includes('401')){
+      message = 'Wrong credentials !';
+    }
+
+    const toast = await this.toastController.create({
+      // message: 'Username or email are already used',
+      message: message,
+      duration: 2000,
+      position: 'middle',
+      color: 'warning'
+    });
+    toast.present();
   }
 }

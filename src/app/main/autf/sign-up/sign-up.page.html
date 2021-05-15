@@ -50,20 +50,20 @@
           </ng-container>
         </div>
         <ion-item>
-          <ion-input name="password" type="password" placeholder="************" formControlName="password">
+          <ion-input  name="password" type="password" placeholder="************" formControlName="password">
             <ion-icon name="lock-closed" ></ion-icon>
           </ion-input>
         </ion-item>
         <div>
           <ng-container *ngFor="let validation of validationMessages.password" >
-            <div class="error_message" *ngIf="validationFormUser.get('password').hasError(validation.type) && (validationFormUser.get('password').dirty || validationFormUser.get('password').touched)">
+            <div  class="error_message" *ngIf="validationFormUser.get('password').hasError(validation.type) && (validationFormUser.get('password').dirty || validationFormUser.get('password').touched)">
               {{validation.message}}
             </div>
           </ng-container>
         </div>
 
         <div class="sign-btn-wrap">
-          <ion-button  shape="round" type="submit"  fill="solid" class="sign-btn" [disabled]="!validationFormUser.valid" >Sign Up</ion-button>
+          <ion-button  shape="round" type="submit"  fill="solid" class="sign-btn" [disabled]="!validationFormUser.valid"  >Sign Up</ion-button>
         </div>
 
         <div class="text-tag">
