@@ -46,18 +46,18 @@ export class LoginPage implements OnInit {
   // eslint-disable-next-line @typescript-eslint/naming-convention
   LoginUser(value: any) {
 
-    try{
+    // try{
 
-      this.authService.loginFireauth(value).then(resp=>{
-        console.log(resp);
-        console.log('Successfully login');
-      });
+    //   this.authService.loginFireauth(value).then(resp=>{
+    //     console.log(resp);
+    //     console.log('Successfully login');
+    //   });
 
-      this.authService.isLoggedIn=true;
-    }catch (err){
-      this.authService.isLoggedIn = false;
-      console.log(err);
-      console.log('login error');
-    }
+    //   this.authService.isLoggedIn=true;
+    // }catch (err){
+    //   this.authService.isLoggedIn = false;
+    //   console.log(err);
+    //   console.log('login error');
+    // }
   }
 }

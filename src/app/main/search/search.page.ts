@@ -20,7 +20,7 @@ export class SearchPage implements OnInit {
   onSearchChange(event: any) {
     const substring: string = event.target.value;
     let all;
-    this.mainService.getMovies2().subscribe((result) => { all = result }, (error) => { console.log(error) });
+    this.mainService.getMovies().subscribe((result) => { all = result }, (error) => { console.log(error) });
     this.searchedMovies = [];
     if (substring == "") {
       return;

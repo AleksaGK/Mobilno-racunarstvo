@@ -17,15 +17,12 @@
   </div> -->
   <h1>Upcomming</h1>
   <ion-slides [options]="sliderConfiguration">
-    <ion-slide *ngFor="let movie of topMovies">
+    <ion-slide *ngFor="let movie of upcomingMovies">
       <ion-card color="secondary" [routerLink]="movie.movieId">
         <ion-card-header>
           <img [src]="movie.poster">
         </ion-card-header>
         <ion-card-content>
-          <p>
-            <ion-icon name="star-outline" color="warning"></ion-icon> {{movie.imdbRating}}
-          </p>
           <p> {{movie.title}} </p>
           <p><span style="float: left;">{{movie.releaseDate.split('-')[0]}}</span> <span style="float: right;">{{movie.runtime}}min</span></p>
         </ion-card-content>

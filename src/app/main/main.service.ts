@@ -7,21 +7,25 @@ import { Movie } from './interfaces/movie.model';
   providedIn: 'root'
 })
 export class MainService {
+ 
   
   constructor(private http: HttpClient) { }
 
-  public getMovies2(): Observable<Movie[]> {
+  public getMovies(): Observable<Movie[]> {
     return this.http.get<any>("http://localhost:16615/api/movies");
   }
-
-  // getMovies() {
-  //   return this.date;
-  // }
 
   getMovie(id: string) {
     return this.http.get<any>("http://localhost:16615/api/movies/" + id);
   }
+ 
+  getUpcomingMovies() {
+    return this.http.get<any>("http://localhost:16615/api/movies/upcoming");
+  }
 
+  getTop10Movies() {
+    return this.http.get<any>("http://localhost:16615/api/movies/top");
+  }
 
   // private date = [
   //   {

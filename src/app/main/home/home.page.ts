@@ -13,6 +13,7 @@ import { Movie } from '../interfaces/movie.model';
 export class HomePage implements OnInit {
 
   topMovies = [];
+  upcomingMovies = [];
 
   sliderConfiguration = {
     slidesPerView: 2,
@@ -30,8 +31,13 @@ export class HomePage implements OnInit {
   ngOnInit() {
     //this.topMovies = this.mainService.getMovies();
 
-    this.mainService.getMovies2().subscribe((result) => {
+    this.mainService.getTop10Movies().subscribe((result) => {
       this.topMovies = result;
+    },
+      (error) => { console.log(error) });
+
+    this.mainService.getUpcomingMovies().subscribe((result) => {
+      this.upcomingMovies = result;
     },
       (error) => { console.log(error) });
 
