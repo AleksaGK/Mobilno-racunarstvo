@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ModalController} from '@ionic/angular';
-import {Movie} from "../../interfaces/movie.model";
+import {Movie} from '../../interfaces/movie.model';
+import {MainService} from '../../main.service';
+import {Vote} from '../../interfaces/vote.model';
+import {AuthService} from '../../autf/service/auth.service';
 
 @Component({
   selector: 'app-movie-modal',
@@ -15,18 +18,16 @@ export class MovieModalComponent implements OnInit {
   showPicture: boolean;
 
 
-  constructor(private modelController: ModalController) { }
+  constructor(private modelController: ModalController, private service: MainService, private authService: AuthService) { }
 
   ngOnInit() {
 
     this.showPicture = true;
   }
-
   onCancel() {
 
     this.modelController.dismiss();
   }
-
   changeRating(num: number) {
 
     this.showPicture = false;
@@ -37,6 +38,18 @@ export class MovieModalComponent implements OnInit {
       this.array.push(num);
       num--;
     }
+  }
 
+  rateFilm() {
+
+    const vote = {} as Vote;
+
+    vote.movieId = this.movie.movieId;
+    vote.userId = this.authService.user.userId;
+    vote.numberOfStars= this.numOfStar;
+    this.service.voteMovie(vote).subscribe(
+      res=> console.log(res),
+      err=>console.log(err.message)
+    );
   }
 }

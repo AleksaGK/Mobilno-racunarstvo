@@ -2,8 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {User} from '../../interfaces/user.model';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../service/auth.service';
-import {ToastController} from "@ionic/angular";
-import {Router} from "@angular/router";
+import {ToastController} from '@ionic/angular';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -47,6 +47,7 @@ export class LoginPage implements OnInit {
       this.authService.isLoggedIn = true;
 
       this.authService.user = res;
+      console.log(this.authService.user.userId);
       this.router.navigate(['/tabs']);
       },
       err=>this.presentToast(err.message));

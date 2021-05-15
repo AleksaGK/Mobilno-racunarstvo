@@ -1,5 +1,6 @@
 // import { Company } from "./company.model";
 import { Genre } from './genre.model';
+import {Vote} from './vote.model';
 
 export interface Movie {
     budget: number;
@@ -22,6 +23,6 @@ export interface Movie {
     actors: string;
     awards: string;
     director: string;
-    //List<Vote> Votes
+    votes: [Vote];
     //List<User> Users
 }

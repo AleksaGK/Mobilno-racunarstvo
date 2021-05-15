@@ -4,6 +4,7 @@ import { Movie } from '../interfaces/movie.model';
 import { MainService } from '../main.service';
 import {ModalController} from '@ionic/angular';
 import {MovieModalComponent} from './movie-modal/movie-modal.component';
+import {AuthService} from '../autf/service/auth.service';
 
 @Component({
   selector: 'app-movie',
@@ -27,19 +28,18 @@ export class MoviePage implements OnInit {
     }
   };
 
-  constructor(private route: ActivatedRoute, private service: MainService,private modalController: ModalController) { }
+  constructor(private route: ActivatedRoute, private service: MainService,private modalController: ModalController,
+             private auth: AuthService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
-      this.service.getMovie(paramMap.get('MovieId')).subscribe((res) => {
+      this.service.getMovie(paramMap.get('MovieId'),this.auth.user.userId).subscribe((res) => {
         this.movie = res;
+        console.log(res.votes[0].numberOfStars);
         this.actors = this.movie.actors.split(',');
         this.awards = this.movie.awards.split('.');
       }, (error) => { console.log(error); });
     });
-
-
-
   }
 
   openModal() {

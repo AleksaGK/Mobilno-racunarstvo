@@ -16,7 +16,7 @@
       <form [formGroup]="validationFormUser" (ngSubmit)="loginUser(validationFormUser.value)">
         <div class="wrapform">
           <ion-item>
-            <ion-input type="text" name="email"  placeholder="Email" formControlName="email">
+            <ion-input type="text" name="email"  placeholder="Email" formControlName="email" [ngModel]="'markobabovic406@gmail.com'">
               <ion-icon name="mail-outline"></ion-icon>
             </ion-input>
           </ion-item>
@@ -31,8 +31,9 @@
 
           <ion-item>
 
-            <ion-input type="password" name="password" placeholder="**************" formControlName="password">
+            <ion-input type="password" name="password" placeholder="**************" formControlName="password" [ngModel]="'123123'">
               <ion-icon name="lock-closed"></ion-icon>
+
             </ion-input>
           </ion-item>
 

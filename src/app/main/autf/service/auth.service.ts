@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {User} from "../../interfaces/user.model";
+import {User} from '../../interfaces/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class AuthService {
     this._isLoggedIn = value;
   }
 
-  public user : User;
+  public user: User;
 
 
   constructor( private http: HttpClient) {
@@ -47,6 +47,6 @@ export class AuthService {
 
     const params = new HttpParams().set('email',value.email).set('password', value.password); //Create new HttpParams
 
-    return this.http.get(this.url,{params:params});
+    return this.http.get(this.url,{params});
   }
 }
