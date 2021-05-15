@@ -15,12 +15,14 @@
 <ion-content>
 
   <ion-card>
-    <ion-img src="{{movie.poster}}" class="imageBackground"></ion-img>
+    <img src="{{movie.poster}}" class="imageBackground">
+
 
     <div class="itemOnImage" >{{numOfStar}}</div>
 
-    <ion-img src="{{movie.poster}}" class="itemOnImage" *ngIf="showPicture"></ion-img>
+<!--      <ion-img src="{{movie.poster}}" class="itemOnImage" *ngIf="showPicture"></ion-img>-->
 
+          <img src="{{movie.poster}}" class="itemOnImage" *ngIf="showPicture">
       <ion-card-subtitle>
         <div style="margin-left: 15px">
 
