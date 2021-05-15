@@ -1,10 +1,115 @@
+<!--<ion-header class="ion-no-border">-->
+<!--  <ion-toolbar>-->
+<!--    <ion-buttons slot="start">-->
+<!--      <ion-back-button >-->
+<!--      </ion-back-button>-->
+<!--    </ion-buttons>-->
+<!--    <h1 class="ion-text-center"> {{movie.Title}}</h1>-->
+<!--  </ion-toolbar>-->
+<!--</ion-header>-->
+
+<!--<ion-content>-->
+
+<!--  <ion-grid>-->
+<!--    &lt;!&ndash;first row  &ndash;&gt;-->
+<!--    &lt;!&ndash; <ion-row>-->
+<!--      <ion-col>-->
+<!--        IMDB ID: {{movie.ImdbId}}-->
+<!--      </ion-col>-->
+<!--    </ion-row> &ndash;&gt;-->
+
+<!--    &lt;!&ndash; second row &ndash;&gt;-->
+<!--    <ion-row>-->
+<!--      <ion-col>-->
+<!--         <img [src]="movie.Poster">-->
+<!--         IMDB ID: {{movie.ImdbId}}-->
+<!--      </ion-col>-->
+<!--      <ion-col>-->
+<!--        overview-->
+<!--      </ion-col>-->
+<!--    </ion-row>-->
+<!--    &lt;!&ndash; third row &ndash;&gt;-->
+<!--    <ion-row>-->
+<!--      <ion-col>-->
+<!--        <h1>Genres</h1>-->
+<!--      </ion-col>-->
+<!--    </ion-row>-->
+<!--    &lt;!&ndash; fourth row &ndash;&gt;-->
+<!--    <ion-row>-->
+<!--      <ion-col>-->
+<!--        <ion-slides pager="false" [options]="sliderConfiguration">-->
+<!--          <ion-slide *ngFor="let i of [].constructor(4)">-->
+<!--            <ion-card color="secondary">-->
+<!--              <ion-card-header></ion-card-header>-->
+<!--              <ion-card-content>-->
+<!--                science-fiction-->
+<!--              </ion-card-content>-->
+<!--            </ion-card>-->
+<!--          </ion-slide>-->
+<!--        </ion-slides>-->
+<!--      </ion-col>-->
+<!--    </ion-row>-->
+
+<!--    &lt;!&ndash; fifth row &ndash;&gt;-->
+<!--    <ion-row>-->
+<!--&lt;!&ndash;      <ion-col class="ion-text-center">&ndash;&gt;-->
+<!--&lt;!&ndash;        <div><img src="../../../assets/star.png"></div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <div>7.6/10</div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <div>672574</div>&ndash;&gt;-->
+<!--&lt;!&ndash;      </ion-col>&ndash;&gt;-->
+
+<!--      <ion-col class="ion-text-center">-->
+<!--        <ion-icon name="star" class="iconYellow"></ion-icon>-->
+<!--        <div>7.6/10</div>-->
+<!--        <div>672574</div>-->
+<!--      </ion-col>-->
+
+<!--      <ion-col class="ion-text-center" >-->
+
+<!--        <ion-icon name="star" class="iconRate" (click)="openModal()"></ion-icon>-->
+
+<!--        <div>Rate this film</div>-->
+
+<!--      </ion-col>-->
+<!--    </ion-row>-->
+
+<!--    &lt;!&ndash; sixth row &ndash;&gt;-->
+<!--    <ion-row>-->
+<!--      <ion-col>-->
+<!--        <h1>Actors</h1>-->
+<!--        &lt;!&ndash; ngFor list all actors &ndash;&gt;-->
+<!--        <p>Daniel Radcliffe</p>-->
+<!--        <p>Rupert Grint</p>-->
+<!--        <p>Emma Watson</p>-->
+<!--      </ion-col>-->
+<!--    </ion-row>-->
+
+<!--    &lt;!&ndash; seventh row &ndash;&gt;-->
+<!--    <ion-row>-->
+<!--      <ion-col>-->
+<!--        <h1>Awards</h1>-->
+<!--        &lt;!&ndash; ngFor list all actors &ndash;&gt;-->
+<!--        <p>Oscar: Best Art Direction-Set Decoration</p>-->
+<!--        <p>Oscar: Best Costume Design</p>-->
+<!--        <p>Oscar: Best Music, Original Score</p>-->
+<!--      </ion-col>-->
+<!--    </ion-row>-->
+
+
+<!--  </ion-grid>-->
+
+
+<!--</ion-content>-->
+
+
+
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button >
       </ion-back-button>
     </ion-buttons>
-    <h1 class="ion-text-center"> {{movie.Title}}</h1>
+    <h1 class="ion-text-center"> {{movie?.title}}</h1>
   </ion-toolbar>
 </ion-header>
 
@@ -12,37 +117,39 @@
 
   <ion-grid>
     <!--first row  -->
-    <!-- <ion-row>
+    <ion-row>
       <ion-col>
-        IMDB ID: {{movie.ImdbId}}
+        IMDB ID: {{movie?.title}}
       </ion-col>
-    </ion-row> -->
+    </ion-row>
 
     <!-- second row -->
     <ion-row>
       <ion-col>
-         <img [src]="movie.Poster">
-         IMDB ID: {{movie.ImdbId}}
+        <img [src]="movie?.poster">
+        IMDB ID: {{movie?.imdbId}}
       </ion-col>
       <ion-col>
-        overview
+        {{movie?.overview}}
       </ion-col>
     </ion-row>
+
     <!-- third row -->
     <ion-row>
       <ion-col>
         <h1>Genres</h1>
       </ion-col>
     </ion-row>
+
     <!-- fourth row -->
     <ion-row>
       <ion-col>
         <ion-slides pager="false" [options]="sliderConfiguration">
-          <ion-slide *ngFor="let i of [].constructor(4)">
+          <ion-slide *ngFor="let genre of movie?.genres">
             <ion-card color="secondary">
               <ion-card-header></ion-card-header>
               <ion-card-content>
-                science-fiction
+                {{genre.name}}
               </ion-card-content>
             </ion-card>
           </ion-slide>
@@ -52,35 +159,27 @@
 
     <!-- fifth row -->
     <ion-row>
-<!--      <ion-col class="ion-text-center">-->
-<!--        <div><img src="../../../assets/star.png"></div>-->
-<!--        <div>7.6/10</div>-->
-<!--        <div>672574</div>-->
-<!--      </ion-col>-->
-
       <ion-col class="ion-text-center">
-        <ion-icon name="star" class="iconYellow"></ion-icon>
-        <div>7.6/10</div>
-        <div>672574</div>
+        <div> <img src="../../../assets/star.png"></div>
+        <div>{{movie?.imdbRating}}/10</div>
+        <div>{{movie?.voteCount}}</div>
       </ion-col>
 
-      <ion-col class="ion-text-center" >
+            <ion-col class="ion-text-center" >
 
-        <ion-icon name="star" class="iconRate" (click)="openModal()"></ion-icon>
+              <ion-icon name="star" class="iconRate" (click)="openModal()"></ion-icon>
 
-        <div>Rate this film</div>
+              <div>Rate this film</div>
 
-      </ion-col>
+            </ion-col>
+
     </ion-row>
 
     <!-- sixth row -->
     <ion-row>
       <ion-col>
         <h1>Actors</h1>
-        <!-- ngFor list all actors -->
-        <p>Daniel Radcliffe</p>
-        <p>Rupert Grint</p>
-        <p>Emma Watson</p>
+        <p *ngFor="let actor of actors">{{actor}}</p>
       </ion-col>
     </ion-row>
 
@@ -88,10 +187,7 @@
     <ion-row>
       <ion-col>
         <h1>Awards</h1>
-        <!-- ngFor list all actors -->
-        <p>Oscar: Best Art Direction-Set Decoration</p>
-        <p>Oscar: Best Costume Design</p>
-        <p>Oscar: Best Music, Original Score</p>
+        <p *ngFor="let award of awards">{{award}}</p>
       </ion-col>
     </ion-row>
 
