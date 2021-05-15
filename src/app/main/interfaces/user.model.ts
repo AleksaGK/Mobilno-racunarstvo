@@ -1,8 +1,8 @@
-export class User {
-  userid: number;
-  username: string;
-  email: string;
-  password: string;
-  votes: [];
-  movies: [];
+export interface User {
+  userid?: number;
+  username?: string;
+  email?: string;
+  password?: string;
+  votes?: [];
+  movies?: [];
 }
