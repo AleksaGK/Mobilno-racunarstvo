@@ -8,22 +8,23 @@ import { Movie } from './interfaces/movie.model';
 })
 export class MainService {
 
+  private url = 'http://localhost:16615/api/movies';
   constructor(private http: HttpClient) { }
 
   public getMovies(): Observable<Movie[]> {
-    return this.http.get<any>("http://localhost:16615/api/movies");
+    return this.http.get<any>(this.url);
   }
 
   getMovie(id: string) {
-    return this.http.get<any>('http://localhost:16615/api/movies/' + id);
+    return this.http.get<any>(this.url + '/'+id);
   }
- 
+
   getUpcomingMovies() {
-    return this.http.get<any>("http://localhost:16615/api/movies/upcoming");
+    return this.http.get<any>(this.url+'/upcoming');
   }
 
   getTop10Movies() {
-    return this.http.get<any>("http://localhost:16615/api/movies/top");
+    return this.http.get<any>(this.url+'/top');
   }
 
   // private date = [
