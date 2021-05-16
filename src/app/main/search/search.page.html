@@ -23,7 +23,7 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let genre of genresWithMovies">
-        <ion-card [routerLink] = "genre.name">
+        <ion-card [routerLink] = "'genre'+'/'+genre.name">
           <ion-card-header>
             <img *ngFor="let movie of genre.movies; let i = index" class="img{{i+1}}" [src]="movie.poster">
           </ion-card-header>

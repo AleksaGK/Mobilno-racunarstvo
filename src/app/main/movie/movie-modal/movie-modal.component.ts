@@ -4,6 +4,7 @@ import {Movie} from '../../interfaces/movie.model';
 import {MainService} from '../../main.service';
 import {Vote} from '../../interfaces/vote.model';
 import {AuthService} from '../../autf/service/auth.service';
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-movie-modal',
@@ -18,7 +19,8 @@ export class MovieModalComponent implements OnInit {
   showPicture: boolean;
 
 
-  constructor(private modelController: ModalController, private service: MainService, private authService: AuthService) { }
+  constructor(private modelController: ModalController, private service: MainService, private authService: AuthService,
+              private route: Router) { }
 
   ngOnInit() {
 
@@ -44,12 +46,21 @@ export class MovieModalComponent implements OnInit {
 
     const vote = {} as Vote;
 
-    vote.movieId = this.movie.movieId;
+    if(this.authService.user == null){
+      console.log('usao');
+      this.route.navigate(['/tabs/user']);
+      this.modelController.dismiss();
+
+    }
+
+    else{
+      vote.movieId = this.movie.movieId;
     vote.userId = this.authService.user.userId;
     vote.numberOfStars= this.numOfStar;
     this.service.voteMovie(vote).subscribe(
       res=> console.log(res),
       err=>console.log(err.message)
     );
+          }
   }
 }

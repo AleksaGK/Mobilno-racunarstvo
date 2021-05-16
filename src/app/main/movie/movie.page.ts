@@ -35,6 +35,7 @@ export class MoviePage implements OnInit {
     this.route.paramMap.subscribe(paramMap => {
       if(this.auth.user == null)
       {
+        // eslint-disable-next-line no-var
        var userId = -1;
       }
       else{
