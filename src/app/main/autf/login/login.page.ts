@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
 
   loginUser(value: any) {
     this.authService.login(value).subscribe(res=>{
-      this.authService.isLoggedIn = true;
+
 
       this.authService.user = res;
       console.log(this.authService.user.userId);

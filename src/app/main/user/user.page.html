@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
 
-    <div slot="end" *ngIf="logged">
+    <div slot="end" *ngIf="this.authService.user!=null">
 
     <ion-buttons>
        <ion-button (click)="onAlert()">
@@ -11,9 +11,9 @@
     </div>
 
 
-    <ion-title class="title2" *ngIf="logged">{{this.authService.user.username}}</ion-title>
+    <ion-title class="title2" *ngIf="this.authService.user!=null">{{this.authService.user.username}}</ion-title>
 
-    <div *ngIf="!logged">
+    <div *ngIf="this.authService.user==null">
       <ion-item>
 
       <ion-icon name="person-outline" class="icon2">Sign in</ion-icon>
@@ -26,12 +26,8 @@
 </ion-header>
 
 <ion-content>
- <div *ngIf="logged">
 
-    <p>true</p>
-  </div>
-
-  <div *ngIf="!logged">
+  <div *ngIf="this.authService.user!=null">
 
    <ion-button class="button2" routerLink="/sign-in"> Sign in/Sign up</ion-button>
   </div>

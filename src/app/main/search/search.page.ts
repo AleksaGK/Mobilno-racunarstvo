@@ -19,21 +19,9 @@ export class SearchPage implements OnInit {
 
   onSearchChange(event: any) {
     const substring: string = event.target.value;
-    let all =[];
-    this.mainService.getMoviesByTitle(substring).subscribe((result) => { all=result; console.log(result);},(error) => { console.log(error); });
-    this.searchedMovies = [];
 
-    console.log(all);
+    this.mainService.getMoviesByTitle(substring).subscribe(res => { this.searchedMovies =res ; this.resultsAvailable = true},error => { console.log(error); });
 
-    return;
-
-    // let i = 0;
-    // for (let index = 0; index < all.length; index++) {
-    //   if (all[index].title.toLowerCase().includes(substring.toLowerCase())) {
-    //     this.searchedMovies[i++] = { MovieId: all[index].movieId, title: all[index].title, img: all[index].poster };
-    //     this.resultsAvailable = true;
-    //   }
-    // }
 
   }
 }

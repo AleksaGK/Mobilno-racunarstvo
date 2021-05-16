@@ -9,7 +9,7 @@ import {AlertController} from '@ionic/angular';
 })
 export class UserPage implements OnInit {
 
-  logged: boolean;
+
   constructor(public authService: AuthService, private alertController: AlertController) { }
 
 
@@ -18,7 +18,7 @@ export class UserPage implements OnInit {
   ionViewWillEnter(){
 
     console.log('cao');
-    this.logged = this.authService.isLoggedIn;
+
   }
 
 
@@ -33,8 +33,8 @@ export class UserPage implements OnInit {
           text: 'Yes',
           handler:()=>{
             console.log('Yes');
-            this.authService.isLoggedIn=false;
-            this.logged= false;
+            this.authService.user = null;
+
           }
         },
         {

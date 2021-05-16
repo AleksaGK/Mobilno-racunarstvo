@@ -4,7 +4,9 @@
   <!-- (focusout)="resultsAvailable=!resultsAvailable" -->
   <ion-list>
     <ion-item>
-      <ion-searchbar debounce="500" (ionChange)="onSearchChange($event)" (focusin)="onSearchChange($event)">
+<!--      <ion-searchbar debounce="500" (ionChange)="onSearchChange($event)" (focusin)="onSearchChange($event)">-->
+<!--      </ion-searchbar>   -->
+      <ion-searchbar debounce="500" (ionChange)="onSearchChange($event)" >
       </ion-searchbar>
     </ion-item>
     <ion-item *ngIf="resultsAvailable" showCancelButton="focus">
