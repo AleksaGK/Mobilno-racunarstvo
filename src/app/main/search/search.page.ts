@@ -23,5 +23,6 @@ export class SearchPage implements OnInit {
     this.mainService.getMoviesByTitle(substring).subscribe(res => { this.searchedMovies =res ; this.resultsAvailable = true},error => { console.log(error); });
 
 
+
   }
 }
