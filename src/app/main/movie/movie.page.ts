@@ -35,7 +35,7 @@ export class MoviePage implements OnInit {
     this.route.paramMap.subscribe(paramMap => {
       this.service.getMovie(paramMap.get('MovieId'),this.auth.user.userId).subscribe((res) => {
         this.movie = res;
-        console.log(res.votes[0].userId);
+
         this.actors = this.movie.actors.split(',');
         this.awards = this.movie.awards.split('.');
       }, (error) => { console.log(error); });
