@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button >
+      <ion-back-button>
       </ion-back-button>
     </ion-buttons>
     <ion-title>movie-list</ion-title>
@@ -9,5 +9,16 @@
 </ion-header>
 
 <ion-content>
+
+
+  <ion-list>
+    <ion-item *ngFor="let movie of movies" [routerLink]="movie.movieId">
+      <div slot="start">
+        <img [src]="movie.poster">
+      </div>
+      <ion-label>{{movie.title}}</ion-label>
+      <p slot="end"><img class="star" src="../../../assets/star.png">{{movie.imdbRating}}</p>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

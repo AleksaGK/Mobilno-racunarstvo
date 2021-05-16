@@ -1,6 +1,7 @@
 import {HttpClient, HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Movie } from './interfaces/movie.model';
 import {Vote} from './interfaces/vote.model';
 
@@ -37,9 +38,15 @@ export class MainService {
     return this.http.get<any>(this.url+'/top');
   }
 
+  getGenres() {
+    return this.http.get<any>(this.url + '/genres');
+  }
   voteMovie(vote: Vote) {
 
     // const data = {userId: vote.userId, movieId: vote.movieId,numberOfStars:vote.numberOfStars};
     return this.http.post<any>(this.url+'/vote',vote);
+  }
+  getMoviesByGenre(genreName: any): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.url + '/genres/' + genreName);
   }
 }

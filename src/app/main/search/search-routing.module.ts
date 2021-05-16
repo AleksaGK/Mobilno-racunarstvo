@@ -9,7 +9,7 @@ const routes: Routes = [
     component: SearchPage
   },
   {
-    path: 'genre',
+    path: ':Name',
     loadChildren: () => import('../movie-list/movie-list.module').then( m => m.MovieListPageModule)
   },
   {
