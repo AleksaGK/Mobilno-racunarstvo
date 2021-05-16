@@ -27,7 +27,7 @@ export class MoviePage implements OnInit {
     }
   };
 
-  constructor(private route: ActivatedRoute, private service: MainService,private modalController: ModalController) { }
+  constructor(private route: ActivatedRoute, private service: MainService, private modalController: ModalController) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
@@ -37,9 +37,6 @@ export class MoviePage implements OnInit {
         this.awards = this.movie.awards.split('.');
       }, (error) => { console.log(error); });
     });
-
-
-
   }
 
   openModal() {

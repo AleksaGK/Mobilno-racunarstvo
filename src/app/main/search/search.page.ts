@@ -11,10 +11,16 @@ export class SearchPage implements OnInit {
 
   searchedMovies = [];
   resultsAvailable = false;
+  genresWithMovies = [];
 
   constructor(private mainService: MainService, private router: Router) { }
 
   ngOnInit() {
+    this.mainService.getGenres().subscribe(
+      (result) => {
+        this.genresWithMovies = result;
+      },
+      (error) => { console.log(error) });
   }
 
   onSearchChange(event: any) {

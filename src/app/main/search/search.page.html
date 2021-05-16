@@ -19,39 +19,17 @@
 
 <!-- Ovde treba pogledati problem -->
   <ion-grid>
-    <ion-row *ngFor="let i of [].constructor(4)">
-      <ion-col size="6">
-        <ion-card [routerLink] = "'genre'">
+    <ion-row>
+      <ion-col size="6" *ngFor="let genre of genresWithMovies">
+        <ion-card [routerLink] = "genre.name">
           <ion-card-header>
-            <img class="img1"
-              src="https://m.media-amazon.com/images/M/MV5BNTM4NzQ2NjA4NV5BMl5BanBnXkFtZTgwODAwMjE4MDE@._V1_SX300.jpg">
-            <img class="img2"
-              src="https://m.media-amazon.com/images/M/MV5BNDM0YzMyNGUtMTU1Yy00OTE2LWE5NzYtZDZhMTBmN2RkNjg3XkEyXkFqcGdeQXVyMzU5NjU1MDA@._V1_SX300.jpg">
-            <img class="img3"
-              src="https://m.media-amazon.com/images/M/MV5BNzU3NDg4NTAyNV5BMl5BanBnXkFtZTcwOTg2ODg1Mg@@._V1_SX300.jpg">
+            <img *ngFor="let movie of genre.movies; let i = index" class="img{{i+1}}" [src]="movie.poster">
           </ion-card-header>
           <ion-card-content>
-            genre type
+            {{genre.name}}
           </ion-card-content>
         </ion-card>
       </ion-col>
-
-      <ion-col size="6">
-        <ion-card [routerLink] = "'genre'">
-          <ion-card-header>
-            <img class="img1"
-              src="https://m.media-amazon.com/images/M/MV5BNTM4NzQ2NjA4NV5BMl5BanBnXkFtZTgwODAwMjE4MDE@._V1_SX300.jpg">
-            <img class="img2"
-              src="https://m.media-amazon.com/images/M/MV5BNDM0YzMyNGUtMTU1Yy00OTE2LWE5NzYtZDZhMTBmN2RkNjg3XkEyXkFqcGdeQXVyMzU5NjU1MDA@._V1_SX300.jpg">
-            <img class="img3"
-              src="https://m.media-amazon.com/images/M/MV5BNzU3NDg4NTAyNV5BMl5BanBnXkFtZTcwOTg2ODg1Mg@@._V1_SX300.jpg">
-          </ion-card-header>
-          <ion-card-content>
-            genre type
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-
     </ion-row>
   </ion-grid>
 
