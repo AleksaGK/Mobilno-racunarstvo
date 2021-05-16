@@ -65,10 +65,10 @@
 
               <ion-icon name="star" class="iconRate" (click)="openModal()"></ion-icon>
 
-              <div *ngIf="this.auth.user==null">Rate this film</div>
+              <div *ngIf="this.auth.user==null || movie?.votes==null">Rate this film</div>
 <!--              <div *ngIf="movie?.votes==null">Rate this film</div>-->
 <!--              <div *ngIf="movie?.votes!=null">Your vote {{movie?.votes[0].numberOfStars}}</div>-->
-              <div *ngIf="this.auth.user!=null">Your vote {{movie?.votes[0].numberOfStars}}</div>
+              <div *ngIf="this.auth.user!=null && movie?.votes!=null">Your vote {{movie?.votes[0].numberOfStars}}</div>
 
             </ion-col>
 

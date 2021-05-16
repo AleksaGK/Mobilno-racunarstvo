@@ -33,7 +33,14 @@ export class MoviePage implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
-      this.service.getMovie(paramMap.get('MovieId'),this.auth.user.userId).subscribe((res) => {
+      if(this.auth.user == null)
+      {
+       var userId = -1;
+      }
+      else{
+        userId = this.auth.user.userId;
+      }
+      this.service.getMovie(paramMap.get('MovieId'),userId).subscribe((res) => {
         this.movie = res;
 
         this.actors = this.movie.actors.split(',');

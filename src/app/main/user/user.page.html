@@ -27,7 +27,7 @@
 
 <ion-content>
 
-  <div *ngIf="this.authService.user!=null">
+  <div *ngIf="this.authService.user==null">
 
    <ion-button class="button2" routerLink="/sign-in"> Sign in/Sign up</ion-button>
   </div>
