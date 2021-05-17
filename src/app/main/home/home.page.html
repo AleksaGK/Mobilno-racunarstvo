@@ -16,7 +16,10 @@
 
   </div> -->
   <h1>Upcomming</h1>
-  <ion-slides [options]="sliderConfiguration">
+  <div *ngIf="upcomingMovies.length==0" class="spinner">
+    <ion-spinner name="lines"  ></ion-spinner>
+  </div>
+  <ion-slides [options]="sliderConfiguration" *ngIf="upcomingMovies.length!=0">
     <ion-slide *ngFor="let movie of upcomingMovies">
       <ion-card color="secondary" [routerLink]="movie.movieId">
         <ion-card-header>
@@ -31,7 +34,11 @@
   </ion-slides>
 
   <h1>Top 10 by IMDB rationg</h1>
-  <ion-slides [options]="sliderConfiguration">
+  <div *ngIf="topMovies.length==0" class="spinner">
+    <ion-spinner name="lines" ></ion-spinner>
+  </div>
+
+  <ion-slides [options]="sliderConfiguration" *ngIf="topMovies.length!=0">
     <ion-slide *ngFor="let movie of topMovies">
       <ion-card color="secondary" [routerLink]="movie.movieId">
         <ion-card-header>

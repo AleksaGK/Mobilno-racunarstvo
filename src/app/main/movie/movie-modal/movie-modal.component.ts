@@ -14,6 +14,7 @@ import {Route, Router} from "@angular/router";
 export class MovieModalComponent implements OnInit {
 
    @Input()movie: Movie;
+   @Input()starVote: number;
   array: number[] = [];
   numOfStar: number;
   showPicture: boolean;
@@ -25,6 +26,18 @@ export class MovieModalComponent implements OnInit {
   ngOnInit() {
 
     this.showPicture = true;
+
+    if(this.starVote!=null){
+
+    this.numOfStar = this.starVote ;
+
+    while(this.starVote!==0){
+
+      this.array.push(this.starVote);
+      this.starVote--;
+    }
+
+    }
   }
   onCancel() {
 
@@ -55,12 +68,12 @@ export class MovieModalComponent implements OnInit {
 
     else{
       vote.movieId = this.movie.movieId;
-    vote.userId = this.authService.user.userId;
-    vote.numberOfStars= this.numOfStar;
+      vote.userId = this.authService.user.userId;
+      vote.numberOfStars= this.numOfStar;
     this.service.voteMovie(vote).subscribe(
-      res=> console.log(res),
+      res=>  this.modelController.dismiss(vote.numberOfStars,'stars'),
       err=>console.log(err.message)
     );
-          }
+             }
   }
 }

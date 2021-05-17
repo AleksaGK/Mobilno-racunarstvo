@@ -16,7 +16,7 @@ export class MoviePage implements OnInit {
   movie: Movie;
   actors: string[];
   awards: string[];
-
+  starVote: number;
   sliderConfiguration = {
     slidesPerView: 2.5,
     coverflowEffect: {
@@ -43,7 +43,9 @@ export class MoviePage implements OnInit {
       }
       this.service.getMovie(paramMap.get('MovieId'),userId).subscribe((res) => {
         this.movie = res;
-
+        if(this.movie.votes!=null){
+          this.starVote = this.movie.votes[0].numberOfStars ;
+        }
         this.actors = this.movie.actors.split(',');
         this.awards = this.movie.awards.split('.');
       }, (error) => { console.log(error); });
@@ -54,10 +56,18 @@ export class MoviePage implements OnInit {
     this.modalController.create({
       component: MovieModalComponent,
       componentProps:{
-        movie:this.movie
+        movie:this.movie,
+        starVote: this.starVote
       }
     }).then((modal)=>{
       modal.present();
+      return modal.onDidDismiss();
+    }).then((resultData)=>{
+
+      if(resultData.role ==='stars'){
+        console.log(resultData.data);
+        this.starVote= resultData.data;
+      }
     });
   }
 }
