@@ -1,9 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {User} from '../../interfaces/user.model';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../service/auth.service';
-import {ToastController} from '@ionic/angular';
-import {Router} from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from '../../interfaces/user.model';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../service/auth.service';
+import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,28 +14,28 @@ export class LoginPage implements OnInit {
 
 
   validationFormUser: FormGroup;
-  validationUserMessage ={
-    email:[
-      {type:'required', message:'Please enter your Email !'},
-      {type:'pattern', message:'The email entered is incorrect. Try again'}
+  validationUserMessage = {
+    email: [
+      { type: 'required', message: 'Please enter your Email !' },
+      { type: 'pattern', message: 'The email entered is incorrect. Try again' }
     ],
-    password:[
-      {type:'required', message:'Please enter your password !'},
-      {type:'minlength', message:'The password must be at least 6 characters or more'}
+    password: [
+      { type: 'required', message: 'Please enter your password !' },
+      { type: 'minlength', message: 'The password must be at least 6 characters or more' }
 
     ]
   };
-  constructor(public formBuilder: FormBuilder,public authService: AuthService,private toastController: ToastController,
-              private router: Router) {
+  constructor(public formBuilder: FormBuilder, public authService: AuthService, private toastController: ToastController,
+    private router: Router) {
   }
 
-  ngOnInit(){
+  ngOnInit() {
     this.validationFormUser = this.formBuilder.group({
-      email: new FormControl('',Validators.compose([
+      email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
       ])),
-      password: new FormControl('',Validators.compose([
+      password: new FormControl('', Validators.compose([
         Validators.required,
         Validators.minLength(6)
       ]))
@@ -43,20 +43,20 @@ export class LoginPage implements OnInit {
   }
 
   loginUser(value: any) {
-    this.authService.login(value).subscribe(res=>{
+    this.authService.login(value).subscribe(res => {
 
 
       this.authService.user = res;
       console.log(this.authService.user.userId);
       this.router.navigate(['/tabs']);
-      },
-      err=>this.presentToast(err.message));
+    },
+      err => this.presentToast(err.message));
 
   }
 
 
   async presentToast(message) {
-    if(message.includes('401')){
+    if (message.includes('401')) {
       message = 'Wrong credentials !';
     }
 
