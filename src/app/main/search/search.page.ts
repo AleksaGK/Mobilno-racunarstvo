@@ -26,7 +26,7 @@ export class SearchPage implements OnInit {
   onSearchChange(event: any) {
     const substring: string = event.target.value;
 
-    this.mainService.getMoviesByTitle(substring).subscribe(res => { this.searchedMovies =res ; this.resultsAvailable = true},error => { console.log(error); });
+    this.mainService.getMoviesByTitle(substring).subscribe(res => { this.searchedMovies = res; this.resultsAvailable = true }, error => { console.log(error); });
 
 
 

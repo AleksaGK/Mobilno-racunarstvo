@@ -16,7 +16,7 @@ export class MainService {
   public getMovies(): Observable<Movie[]> {
     return this.http.get<any>(this.url);
   }
-  
+
   public getMoviesByTitle(title: string): Observable<Movie[]> {
     const params = new HttpParams().set('title', title);
     return this.http.get<any>(this.url + '/title', { params });
@@ -77,5 +77,19 @@ export class MainService {
 
   getMoviesByGenre(genreName: any): Observable<Movie[]> {
     return this.http.get<Movie[]>(this.url + '/genres/' + genreName);
+  }
+
+  getVotedMovies(userId: number): Observable<Movie[]> {
+    const params = new HttpParams().set('id', userId.toString());
+    return this.http.get<Movie[]>(this.url + '/voted', { params });
+  }
+
+  deleteVote(vote: Vote): Observable<Movie[]> {
+    console.log(vote.movieId)
+    let httpParams = new HttpParams().set('userId', vote.userId.toString()).set('movieId', vote.movieId.toString());
+    // httpParams;
+    let options = { params: httpParams };
+
+    return this.http.delete<Movie[]>(this.url, options);
   }
 }
