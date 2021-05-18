@@ -1,8 +1,7 @@
-
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button >
+      <ion-back-button>
       </ion-back-button>
     </ion-buttons>
     <h1 class="ion-text-center"> {{movie?.title}}</h1>
@@ -12,38 +11,33 @@
 <ion-content>
 
   <ion-grid>
-    <!--first row  -->
+    <!--  first row -->
     <ion-row>
       <ion-col>
-        IMDB ID: {{movie?.title}}
+        <img alt="'No image'" [src]="movie?.poster">
+        IMDB ID: {{movie?.imdbId}}
+      </ion-col>
+      <ion-col class="overview">
+        {{movie?.overview}}
       </ion-col>
     </ion-row>
 
     <!-- second row -->
     <ion-row>
       <ion-col>
-        <img alt="'No image'" [src]="movie?.poster">
-        IMDB ID: {{movie?.imdbId}}
-      </ion-col>
-      <ion-col>
-        {{movie?.overview}}
+        <h1>Genres</h1>
       </ion-col>
     </ion-row>
 
     <!-- third row -->
     <ion-row>
       <ion-col>
-        <h1>Genres</h1>
-      </ion-col>
-    </ion-row>
-
-    <!-- fourth row -->
-    <ion-row>
-      <ion-col>
         <ion-slides pager="false" [options]="sliderConfiguration">
-          <ion-slide *ngFor="let genre of movie?.genres">
+          <ion-slide *ngFor="let genre of movie?.genres; let i = index">
             <ion-card color="secondary">
-              <ion-card-header></ion-card-header>
+              <ion-card-header>
+                <img src="data:image/png;base64,{{genre.icon}}"  alt="genre type"/>
+              </ion-card-header>
               <ion-card-content>
                 {{genre.name}}
               </ion-card-content>
@@ -53,28 +47,28 @@
       </ion-col>
     </ion-row>
 
-    <!-- fifth row -->
-    <ion-row>
+    <!-- fourth row -->
+    <ion-row *ngIf="!upcomingMovie">
       <ion-col class="ion-text-center">
         <div> <img src="../../../assets/star.png" alt="'No image '"></div>
         <div>{{movie?.imdbRating}}/10</div>
         <div>{{movie?.voteCount}}</div>
       </ion-col>
 
-            <ion-col class="ion-text-center" >
+      <ion-col class="ion-text-center">
 
-              <ion-icon name="star" class="iconRate" (click)="openModal()"></ion-icon>
+        <ion-icon name="star" class="iconRate" (click)="openModal()"></ion-icon>
 
-              <div *ngIf="(this.auth.user==null || movie?.votes==null) && starVote==null">Rate this film</div>
-<!--              <div *ngIf="movie?.votes==null">Rate this film</div>-->
-<!--              <div *ngIf="movie?.votes!=null">Your vote {{movie?.votes[0].numberOfStars}}</div>-->
-              <div *ngIf="this.auth.user!=null && (movie?.votes!=null || starVote!=null)">Your vote {{starVote}}</div>
+        <div *ngIf="(this.auth.user==null || movie?.votes==null) && starVote==null">Rate this film</div>
+        <!--              <div *ngIf="movie?.votes==null">Rate this film</div>-->
+        <!--              <div *ngIf="movie?.votes!=null">Your vote {{movie?.votes[0].numberOfStars}}</div>-->
+        <div *ngIf="this.auth.user!=null && (movie?.votes!=null || starVote!=null)">Your vote {{starVote}}</div>
 
-            </ion-col>
+      </ion-col>
 
     </ion-row>
 
-    <!-- sixth row -->
+    <!-- fifth row -->
     <ion-row>
       <ion-col>
         <h1>Actors</h1>
@@ -82,8 +76,8 @@
       </ion-col>
     </ion-row>
 
-    <!-- seventh row -->
-    <ion-row>
+    <!-- sixth row -->
+    <ion-row *ngIf="!upcomingMovie">
       <ion-col>
         <h1>Awards</h1>
         <p *ngFor="let award of awards">{{award}}</p>

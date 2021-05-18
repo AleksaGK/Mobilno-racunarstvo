@@ -60,7 +60,6 @@ export class MovieModalComponent implements OnInit {
     const vote = {} as Vote;
 
     if(this.authService.user == null){
-      console.log('usao');
       this.route.navigate(['/tabs/user']);
       this.modelController.dismiss();
 

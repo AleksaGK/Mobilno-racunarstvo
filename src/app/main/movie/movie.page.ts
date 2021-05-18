@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Movie } from '../interfaces/movie.model';
 import { MainService } from '../main.service';
-import {ModalController} from '@ionic/angular';
-import {MovieModalComponent} from './movie-modal/movie-modal.component';
-import {AuthService} from '../autf/service/auth.service';
+import { ModalController } from '@ionic/angular';
+import { MovieModalComponent } from './movie-modal/movie-modal.component';
+import { AuthService } from '../autf/service/auth.service';
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-movie',
@@ -17,6 +18,9 @@ export class MoviePage implements OnInit {
   actors: string[];
   awards: string[];
   starVote: number;
+  upcomingMovie: boolean = false;
+
+
   sliderConfiguration = {
     slidesPerView: 2.5,
     coverflowEffect: {
@@ -28,23 +32,25 @@ export class MoviePage implements OnInit {
     }
   };
 
-  constructor(private route: ActivatedRoute, private service: MainService,private modalController: ModalController,
-             private auth: AuthService) { }
+  constructor(private route: ActivatedRoute, private service: MainService, private modalController: ModalController,
+    private auth: AuthService) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
-      if(this.auth.user == null)
-      {
+      if (this.auth.user == null) {
         // eslint-disable-next-line no-var
-       var userId = -1;
+        var userId = -1;
       }
-      else{
+      else {
         userId = this.auth.user.userId;
       }
-      this.service.getMovie(paramMap.get('MovieId'),userId).subscribe((res) => {
+      this.service.getMovie(paramMap.get('MovieId'), userId).subscribe((res) => {
         this.movie = res;
-        if(this.movie.votes!=null){
-          this.starVote = this.movie.votes[0].numberOfStars ;
+        if (new Date(Date.now()) < new Date(this.movie.releaseDate)) {
+          this.upcomingMovie = true;
+        }
+        if (this.movie.votes != null) {
+          this.starVote = this.movie.votes[0].numberOfStars;
         }
         this.actors = this.movie.actors.split(',');
         this.awards = this.movie.awards.split('.');
@@ -52,21 +58,20 @@ export class MoviePage implements OnInit {
     });
   }
 
+
   openModal() {
     this.modalController.create({
       component: MovieModalComponent,
-      componentProps:{
-        movie:this.movie,
+      componentProps: {
+        movie: this.movie,
         starVote: this.starVote
       }
-    }).then((modal)=>{
+    }).then((modal) => {
       modal.present();
       return modal.onDidDismiss();
-    }).then((resultData)=>{
-
-      if(resultData.role ==='stars'){
-        console.log(resultData.data);
-        this.starVote= resultData.data;
+    }).then((resultData) => {
+      if (resultData.role === 'stars') {
+        this.starVote = resultData.data;
       }
     });
   }

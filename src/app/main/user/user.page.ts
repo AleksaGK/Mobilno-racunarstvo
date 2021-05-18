@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../autf/service/auth.service';
-import {AlertController} from '@ionic/angular';
+import { AuthService } from '../autf/service/auth.service';
+import { AlertController } from '@ionic/angular';
+import { MainService } from '../main.service';
 
 @Component({
   selector: 'app-user',
@@ -9,16 +10,28 @@ import {AlertController} from '@ionic/angular';
 })
 export class UserPage implements OnInit {
 
+  votedMovies = [];
+  userId = (this.authService.user != undefined) ? this.authService.user.userId : null;
 
-  constructor(public authService: AuthService, private alertController: AlertController) { }
+  constructor(public authService: AuthService, private alertController: AlertController, private mainService: MainService) { }
 
 
   ngOnInit() {
+
   }
-  ionViewWillEnter(){
 
-    console.log('cao');
 
+  ionViewWillEnter() {
+    if (this.authService.user != undefined)
+      this.mainService.getVotedMovies(this.authService.user.userId).subscribe(
+        (result) => {
+          this.votedMovies=[];
+          for (let index = 0; index < result.length; index++)
+            if (index < 3)
+              this.votedMovies[index] = result[index];
+        },
+        (error) => { console.log(error) }
+      );
   }
 
 
@@ -28,10 +41,10 @@ export class UserPage implements OnInit {
       cssClass: 'alertHeader',
       header: 'Log out',
       message: 'Are you sure you want to log out ?',
-      buttons:[
+      buttons: [
         {
           text: 'Yes',
-          handler:()=>{
+          handler: () => {
             console.log('Yes');
             this.authService.user = null;
 
@@ -40,12 +53,12 @@ export class UserPage implements OnInit {
         {
           text: 'No',
           role: 'Cancel',
-          handler:()=>{
+          handler: () => {
             console.log('No');
           }
         }
       ]
-    }).then((alert)=>{
+    }).then((alert) => {
       alert.present();
     });
   }

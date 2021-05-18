@@ -13,19 +13,28 @@ export class MainService {
   private url = 'http://localhost:16615/api/movies';
   constructor(private http: HttpClient) { }
 
-  public getMovies(): Observable<Movie[]> {
-    return this.http.get<any>(this.url);
-  }
-  
+  //movie
   public getMoviesByTitle(title: string): Observable<Movie[]> {
     const params = new HttpParams().set('title', title);
     return this.http.get<any>(this.url + '/title', { params });
   }
 
   getMovie(id: string, userId: number) {
-    console.log(userId);
     const movieId = id;
-    return this.http.get<any>(this.url + '/' + movieId + '/' + userId);
+    return this.http.get<any>(this.url + '/' + movieId + '/' + userId).pipe(
+      map((m: Movie) => {
+        let rejoin = m.overview;
+        while (rejoin.length > 280) {
+          let newTitle = rejoin.split(" ");
+          newTitle.pop();
+          rejoin = newTitle.join(' ');
+          rejoin += '...';
+        }
+        if (rejoin.includes('...'))
+          m.overview = rejoin;
+        return m;
+      })
+    );
   }
 
   getUpcomingMovies() {
@@ -66,16 +75,30 @@ export class MainService {
     );
   }
 
+  getMoviesByGenre(genreName: any): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.url + '/genres/' + genreName);
+  }
+
+  //genre
   getGenres() {
     return this.http.get<any>(this.url + '/genres');
   }
 
+  //vote
   voteMovie(vote: Vote) {
     // const data = {userId: vote.userId, movieId: vote.movieId,numberOfStars:vote.numberOfStars};
     return this.http.post<any>(this.url + '/vote', vote);
   }
 
-  getMoviesByGenre(genreName: any): Observable<Movie[]> {
-    return this.http.get<Movie[]>(this.url + '/genres/' + genreName);
+  getVotedMovies(userId: number): Observable<Movie[]> {
+    const params = new HttpParams().set('id', userId.toString());
+    return this.http.get<Movie[]>(this.url + '/voted', { params });
+  }
+
+  deleteVote(vote: Vote): Observable<number> {
+    console.log(vote.movieId)
+    let httpParams = new HttpParams().set('userId', vote.userId.toString()).set('movieId', vote.movieId.toString());
+    let options = { params: httpParams };
+    return this.http.delete<number>(this.url, options);
   }
 }
