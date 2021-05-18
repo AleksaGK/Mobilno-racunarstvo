@@ -34,6 +34,6 @@ export class AuthService {
 
     const params = new HttpParams().set('email', value.email).set('password', value.password); //Create new HttpParams
 
-    return this.http.get(this.url, { params });
+    return this.http.get<any>(this.url, { params });
   }
 }

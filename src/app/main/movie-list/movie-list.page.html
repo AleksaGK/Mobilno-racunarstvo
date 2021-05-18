@@ -10,7 +10,7 @@
 
 <ion-content>
 
-  <div *ngIf="movies.length==0" class="spinner">
+  <div *ngIf="movies.length==0 && includeSearch" class="spinner">
     <ion-spinner name="lines"></ion-spinner>
   </div>
   <ion-list>

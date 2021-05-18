@@ -24,7 +24,7 @@ export class HomePage implements OnInit {
       modifier: 1,
       slideShadows: true,
     }
-  }
+  };
 
 
   constructor(private mainService: MainService, private router: Router) {
@@ -37,14 +37,14 @@ export class HomePage implements OnInit {
         this.upcomingMovies = result;
       },
       (error) => {
-        console.log(error)
+        console.log(error);
       });
     this.mainService.getTop10Movies().subscribe(
       (result) => {
         this.topMovies = result;
       },
       (error) => {
-        console.log(error)
+        console.log(error);
       });
   }
 

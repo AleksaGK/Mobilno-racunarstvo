@@ -47,7 +47,7 @@ export class UserPage implements OnInit {
           handler: () => {
             console.log('Yes');
             this.authService.user = null;
-
+            localStorage.removeItem('jwt');
           }
         },
         {

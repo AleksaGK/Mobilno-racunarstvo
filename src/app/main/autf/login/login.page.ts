@@ -45,8 +45,10 @@ export class LoginPage implements OnInit {
   loginUser(value: any) {
     this.authService.login(value).subscribe(res => {
 
-      const token = ( <any>res).token;
-      console.log(token);
+
+
+
+      localStorage.setItem('jwt',res.token);
       this.authService.user = res;
       this.router.navigate(['/tabs']);
     },
