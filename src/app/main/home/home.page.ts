@@ -25,10 +25,10 @@ export class HomePage implements OnInit {
       slideShadows: true,
     }
   }
-  
 
-  constructor(private mainService: MainService, private router: Router) { 
-   
+
+  constructor(private mainService: MainService, private router: Router) {
+
   }
 
   ngOnInit() {
@@ -49,6 +49,7 @@ export class HomePage implements OnInit {
   }
 
   ionViewDidEnter() {
+
     while(true){
       if (this.topMovies.length != 0 && this.upcomingMovies.length != 0) {
         // setTimeout(() => {

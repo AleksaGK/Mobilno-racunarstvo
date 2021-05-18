@@ -45,7 +45,8 @@ export class LoginPage implements OnInit {
   loginUser(value: any) {
     this.authService.login(value).subscribe(res => {
 
-
+      const token = ( <any>res).token;
+      console.log(token);
       this.authService.user = res;
       console.log(this.authService.user.userId);
       this.router.navigate(['/tabs']);
