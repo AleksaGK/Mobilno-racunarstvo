@@ -23,9 +23,21 @@ export class MainService {
   }
 
   getMovie(id: string, userId: number) {
-    console.log(userId);
     const movieId = id;
-    return this.http.get<any>(this.url + '/' + movieId + '/' + userId);
+    return this.http.get<any>(this.url + '/' + movieId + '/' + userId).pipe(
+      map((m: Movie) => {
+        let rejoin = m.overview;
+        while (rejoin.length > 280) {
+          let newTitle = rejoin.split(" ");
+          newTitle.pop();
+          rejoin = newTitle.join(' ');
+          rejoin += '...';
+        }
+        if (rejoin.includes('...'))
+          m.overview = rejoin;
+        return m;
+      })
+    );
   }
 
   getUpcomingMovies() {

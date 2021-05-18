@@ -17,20 +17,21 @@ export class UserPage implements OnInit {
 
 
   ngOnInit() {
+
+  }
+
+
+  ionViewWillEnter() {
     if (this.authService.user != undefined)
       this.mainService.getVotedMovies(this.authService.user.userId).subscribe(
         (result) => {
+          this.votedMovies=[];
           for (let index = 0; index < result.length; index++)
             if (index < 3)
               this.votedMovies[index] = result[index];
         },
         (error) => { console.log(error) }
       );
-  }
-  ionViewWillEnter() {
-
-    console.log('cao');
-
   }
 
 

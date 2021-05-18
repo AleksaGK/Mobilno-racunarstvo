@@ -17,7 +17,7 @@
   </div> -->
   <h1>Upcomming</h1>
   <div *ngIf="upcomingMovies.length==0" class="spinner">
-    <ion-spinner name="lines"  ></ion-spinner>
+    <ion-spinner name="lines"></ion-spinner>
   </div>
   <ion-slides [options]="sliderConfiguration" *ngIf="upcomingMovies.length!=0">
     <ion-slide *ngFor="let movie of upcomingMovies">

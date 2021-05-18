@@ -47,7 +47,6 @@ export class LoginPage implements OnInit {
 
 
       this.authService.user = res;
-      console.log(this.authService.user.userId);
       this.router.navigate(['/tabs']);
     },
       err => this.presentToast(err.message));
