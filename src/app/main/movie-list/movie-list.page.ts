@@ -48,7 +48,9 @@ export class MovieListPage implements OnInit {
     //console.log(vote.movieId)
     this.service.deleteVote(vote).subscribe(
       (res) => {
-        this.movies = res;
+        this.movies = this.movies.filter(function(el) {
+          return el.movieId != res;
+        });
       },
       (error) => { console.log(error); });
 

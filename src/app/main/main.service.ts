@@ -84,12 +84,11 @@ export class MainService {
     return this.http.get<Movie[]>(this.url + '/voted', { params });
   }
 
-  deleteVote(vote: Vote): Observable<Movie[]> {
+  deleteVote(vote: Vote): Observable<number> {
     console.log(vote.movieId)
     let httpParams = new HttpParams().set('userId', vote.userId.toString()).set('movieId', vote.movieId.toString());
-    // httpParams;
     let options = { params: httpParams };
 
-    return this.http.delete<Movie[]>(this.url, options);
+    return this.http.delete<number>(this.url, options);
   }
 }
