@@ -8,18 +8,27 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-//import {AngularFireAuthModule} from '@angular/fire/auth';
-//import {AngularFireModule} from '@angular/fire';
-// import {firebaseConfig} from '../environments/environment.prod';
-//import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {JwtModule} from "@auth0/angular-jwt";
 
+export function tokenGetter(){
+  return localStorage.getItem('jwt');
+}
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,ReactiveFormsModule,FormsModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,ReactiveFormsModule,FormsModule, HttpClientModule,
+  JwtModule.forRoot({
+    config:{
+      tokenGetter:tokenGetter,
+      allowedDomains:['localhost:16615'],
+      disallowedRoutes: []
+    }
+  })],
   // AngularFireModule.initializeApp(firebaseConfig),
   // AngularFireAuthModule, AngularFirestoreModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
+
+
 export class AppModule {}

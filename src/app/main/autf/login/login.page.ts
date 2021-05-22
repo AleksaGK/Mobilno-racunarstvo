@@ -45,11 +45,12 @@ export class LoginPage implements OnInit {
   loginUser(value: any) {
     this.authService.login(value).subscribe(res => {
 
+      console.log(res);
+      console.log(res);
 
-
-
-      localStorage.setItem('jwt',res.token);
-      this.authService.user = res;
+      //sessionStorage.setItem('jwt',res.token);
+      // localStorage.setItem('jwt',res.token);
+      this.authService.user = res.user;
       this.router.navigate(['/tabs']);
     },
       err => this.presentToast(err.message));
