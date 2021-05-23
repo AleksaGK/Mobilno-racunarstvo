@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from '../service/auth.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-login',
@@ -26,7 +27,7 @@ export class LoginPage implements OnInit {
     ]
   };
   constructor(public formBuilder: FormBuilder, public authService: AuthService, private toastController: ToastController,
-    private router: Router) {
+    private router: Router,private cookie: CookieService) {
   }
 
   ngOnInit() {
@@ -46,11 +47,12 @@ export class LoginPage implements OnInit {
     this.authService.login(value).subscribe(res => {
 
       console.log(res);
-      console.log(res);
 
+      // this.cookie.set('cookie',res.token);
+      // this.cookie.set('cookie2','nesto');
       //sessionStorage.setItem('jwt',res.token);
       // localStorage.setItem('jwt',res.token);
-      this.authService.user = res.user;
+      // this.authService.user = res.user;
       this.router.navigate(['/tabs']);
     },
       err => this.presentToast(err.message));

@@ -92,7 +92,7 @@ export class MainService {
 
   getVotedMovies(userId: number): Observable<Movie[]> {
     const params = new HttpParams().set('id', userId.toString());
-    return this.http.get<Movie[]>(this.url + '/voted', { params,withCredentials:true });
+    return this.http.get<Movie[]>(this.url + '/voted', { params });
   }
 
   deleteVote(vote: Vote): Observable<number> {

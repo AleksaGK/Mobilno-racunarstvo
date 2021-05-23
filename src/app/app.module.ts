@@ -6,9 +6,11 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {JwtModule} from "@auth0/angular-jwt";
+import {JwtModule} from '@auth0/angular-jwt';
+import {CookieService} from 'ngx-cookie-service';
+import {AuthInterceptor} from "./main/auth.interceptor";
 
 export function tokenGetter(){
   return localStorage.getItem('jwt');
@@ -26,7 +28,13 @@ export function tokenGetter(){
   })],
   // AngularFireModule.initializeApp(firebaseConfig),
   // AngularFireAuthModule, AngularFirestoreModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  CookieService,[
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+  }]],
   bootstrap: [AppComponent],
 })
 
