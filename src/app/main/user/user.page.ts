@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../autf/service/auth.service';
 import { AlertController } from '@ionic/angular';
 import { MainService } from '../main.service';
+import {CookieService} from "ngx-cookie-service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user',
@@ -13,7 +15,8 @@ export class UserPage implements OnInit {
   votedMovies = [];
   userId = (this.authService.user != undefined) ? this.authService.user.userId : null;
 
-  constructor(public authService: AuthService, private alertController: AlertController, private mainService: MainService) { }
+  constructor(public authService: AuthService, private alertController: AlertController, private mainService: MainService,
+              private router: Router) { }
 
 
   ngOnInit() {
@@ -22,6 +25,9 @@ export class UserPage implements OnInit {
 
 
   ionViewWillEnter() {
+    if(this.authService.user!=null)
+    {console.log(this.authService.user.userId);}
+
     if (this.authService.user != undefined)
       this.mainService.getVotedMovies(this.authService.user.userId).subscribe(
         (result) => {
@@ -46,8 +52,11 @@ export class UserPage implements OnInit {
           text: 'Yes',
           handler: () => {
             console.log('Yes');
+            this.authService.logout().subscribe((res)=>{
             this.authService.user = null;
-            localStorage.removeItem('jwt');
+              console.log(res);
+
+            },error => {console.log(error);});
           }
         },
         {
@@ -61,5 +70,9 @@ export class UserPage implements OnInit {
     }).then((alert) => {
       alert.present();
     });
+  }
+
+  showMovieList() {
+    this.router.navigate(['tabs/user/'+this.authService.user.userId]);
   }
 }

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { UserPage } from './user.page';
 
 const routes: Routes = [
@@ -10,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: ':userId',
-    loadChildren: () => import('../movie-list/movie-list.module').then( m => m.MovieListPageModule)
+    loadChildren: () => import('../movie-list/movie-list.module').then( m => m.MovieListPageModule),
   }
 ];
 

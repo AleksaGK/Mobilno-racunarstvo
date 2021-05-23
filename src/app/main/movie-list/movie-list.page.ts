@@ -35,7 +35,7 @@ export class MovieListPage implements OnInit {
           (res) => {
             this.movies = res;
           },
-          (error) => { console.log(error); });
+          (error) => { console.log(error); this.router.navigate(['tabs/user']); });
       });
     }
   }

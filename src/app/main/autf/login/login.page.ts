@@ -27,7 +27,7 @@ export class LoginPage implements OnInit {
     ]
   };
   constructor(public formBuilder: FormBuilder, public authService: AuthService, private toastController: ToastController,
-    private router: Router,private cookie: CookieService) {
+    private router: Router,private  cookie: CookieService) {
   }
 
   ngOnInit() {
@@ -46,13 +46,9 @@ export class LoginPage implements OnInit {
   loginUser(value: any) {
     this.authService.login(value).subscribe(res => {
 
-      console.log(res);
 
-      // this.cookie.set('cookie',res.token);
-      // this.cookie.set('cookie2','nesto');
-      //sessionStorage.setItem('jwt',res.token);
-      // localStorage.setItem('jwt',res.token);
-      // this.authService.user = res.user;
+
+      this.authService.user = res.user;
       this.router.navigate(['/tabs']);
     },
       err => this.presentToast(err.message));

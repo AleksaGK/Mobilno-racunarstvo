@@ -74,5 +74,6 @@ export class MovieModalComponent implements OnInit {
       err=>console.log(err.message)
     );
              }
+
   }
 }
