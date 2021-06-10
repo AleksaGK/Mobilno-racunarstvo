@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../autf/service/auth.service';
 import { AlertController } from '@ionic/angular';
 import { MainService } from '../main.service';
-import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 
 @Component({

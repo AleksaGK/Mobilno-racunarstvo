@@ -27,8 +27,8 @@
 
 <ion-content>
 
-  <div *ngIf="this.authService.user==null; else votes">
-    <ion-button class="button2" routerLink="/sign-in"> Sign in/Sign up</ion-button>
+  <div *ngIf="this.authService.user==null; else votes" class="button2">
+    <ion-button routerLink="/sign-in"> Sign in/Sign up</ion-button>
   </div>
 
   <ng-template #votes>

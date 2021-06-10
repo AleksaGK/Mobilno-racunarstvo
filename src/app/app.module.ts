@@ -8,8 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {JwtModule} from '@auth0/angular-jwt';
-import {CookieService} from 'ngx-cookie-service';
+// import {CookieService} from 'ngx-cookie-service';
 import {AuthInterceptor} from './main/auth.interceptor';
 
 // export function tokenGetter(){
@@ -28,7 +27,7 @@ import {AuthInterceptor} from './main/auth.interceptor';
   // })],
 
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-  CookieService,[
+  /*CookieService,*/[
   {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,

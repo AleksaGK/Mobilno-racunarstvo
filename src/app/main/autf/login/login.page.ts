@@ -4,7 +4,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AuthService } from '../service/auth.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-login',
@@ -27,7 +26,7 @@ export class LoginPage implements OnInit {
     ]
   };
   constructor(public formBuilder: FormBuilder, public authService: AuthService, private toastController: ToastController,
-    private router: Router,private  cookie: CookieService) {
+    private router: Router) {
   }
 
   ngOnInit() {
